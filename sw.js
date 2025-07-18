@@ -1,34 +1,47 @@
-const CACHE_NAME = 'reading-tracker-v1';
+const CACHE_NAME = 'reading-tracker-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/app.js',
-  '/manifest.json',
-  'https://kit.fontawesome.com/a076d05399.js',
-  'https://cdn.jsdelivr.net/npm/chart.js'
+  './index.html',
+  './app.js',
+  './manifest.json'
+  // CSS ফাইল থাকলে এখানে যোগ করো
 ];
 
+// Install event
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    })
   );
+  self.skipWaiting();
 });
 
+// Activate event (পুরনো cache ডিলিট)
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
+});
+
+// Fetch event (cache first strategy)
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      }
-    )
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
 
-// Handle background sync for timer
+// Background Sync
 self.addEventListener('sync', event => {
   if (event.tag === 'background-timer') {
     event.waitUntil(doBackgroundTimer());
@@ -36,11 +49,10 @@ self.addEventListener('sync', event => {
 });
 
 function doBackgroundTimer() {
-  // Keep timer running in background
   return self.registration.showNotification('Reading Tracker', {
     body: 'Timer is running in background',
-    icon: '/manifest.json',
-    badge: '/manifest.json',
+    icon: './icon-192.png', // এখানে তোমার icon ফাইলের সঠিক path দাও
+    badge: './icon-192.png',
     silent: true
   });
 }
