@@ -527,7 +527,7 @@
           Reading Progress
         </div>
         <div class="chart-toggle">
-          <button class="toggle-option active" onclick="toggleBreakChart('Today')">Today</button>
+         <button class="toggle-option active" onclick="toggleBreakChart('Today')">Today</button>
           <button class="toggle-option" onclick="toggleReadingChart('weekly')">Weekly</button>
           <button class="toggle-option" onclick="toggleReadingChart('monthly')">Monthly</button>
         </div>
@@ -545,7 +545,8 @@
           Break Activities Analysis
         </div>
         <div class="chart-toggle">
-          <button class="toggle-option active" onclick="toggleBreakChart('weekly')">Weekly</button>
+          <button class="toggle-option active" onclick="toggleBreakChart('Today')">Today</button>
+          <button class="toggle-option " onclick="toggleBreakChart('weekly')">Weekly</button>
           <button class="toggle-option" onclick="toggleBreakChart('monthly')">Monthly</button>
         </div>
       </div>
@@ -564,12 +565,32 @@
         <div class="chart-toggle">
           <button class="toggle-option active" onclick="toggleActivityPattern('weekly')">Weekly</button>
           <button class="toggle-option" onclick="toggleActivityPattern('monthly')">Monthly</button>
-          <button class="toggle-option" onclick="toggleActivityPattern('heatmap')">Hourly Heatmap</button>
         </div>
       </div>
       <div class="chart-canvas" id="activityPatternContainer">
         <canvas id="activityPatternChart"></canvas>
         <div id="activityHeatmap" class="activity-heatmap" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+     <!-- Hourly Heatmap -->
+    <div class="chart-container">
+      <div class="chart-header">
+        <div class="chart-title">
+          <i class="fas fa-calendar-alt"></i>
+          Hourly Heatmap
+        </div>
+        <div class="chart-toggle">
+          <button class="toggle-option active" onclick="toggleActivityPattern('Today')">Today</button>
+          <button class="toggle-option " onclick="toggleActivityPattern('weekly')">Weekly</button>
+          <button class="toggle-option" onclick="toggleActivityPattern('monthly')">Monthly</button>
+          
+        </div>
+      </div>
+      <div class="chart-canvas" id=" hourlyHeatmapContainer">
+        <canvas id=" hourlyHeatmapChart"></canvas>
+        <div id=" aourlyHeatmap" class=" hourly-heatmap" style="display: none;"></div>
       </div>
     </div>
   </div>
@@ -615,23 +636,6 @@
       </div>
     </div>
   </div>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('✅ Service Worker Registered'))
-      .catch(err => console.error('❌ SW Registration Failed:', err));
-  }
-</script>
-<script>
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    console.log('✅ PWA install prompt available');
-    // চাইলে একটা বাটন দেখিয়ে Install করতে পারো
-  });
-</script>
-
   <script src="app.js"></script>
 </body>
 </html>
