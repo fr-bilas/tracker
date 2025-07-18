@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Reading Tracker</title>
+  <title><b>Reading Tracker</b></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -527,8 +527,8 @@
           Reading Progress
         </div>
         <div class="chart-toggle">
-         <button class="toggle-option active" onclick="toggleBreakChart('Today')">Today</button>
-          <button class="toggle-option" onclick="toggleReadingChart('weekly')">Weekly</button>
+         
+          <button class="toggle-option active" onclick="toggleReadingChart('weekly')">Weekly</button>
           <button class="toggle-option" onclick="toggleReadingChart('monthly')">Monthly</button>
         </div>
       </div>
@@ -545,8 +545,8 @@
           Break Activities Analysis
         </div>
         <div class="chart-toggle">
-          <button class="toggle-option active" onclick="toggleBreakChart('Today')">Today</button>
-          <button class="toggle-option " onclick="toggleBreakChart('weekly')">Weekly</button>
+          
+          <button class="toggle-option active " onclick="toggleBreakChart('weekly')">Weekly</button>
           <button class="toggle-option" onclick="toggleBreakChart('monthly')">Monthly</button>
         </div>
       </div>
@@ -574,27 +574,8 @@
     </div>
   </div>
 
-     <!-- Hourly Heatmap -->
-    <div class="chart-container">
-      <div class="chart-header">
-        <div class="chart-title">
-          <i class="fas fa-calendar-alt"></i>
-          Hourly Heatmap
-        </div>
-        <div class="chart-toggle">
-          <button class="toggle-option active" onclick="toggleActivityPattern('Today')">Today</button>
-          <button class="toggle-option " onclick="toggleActivityPattern('weekly')">Weekly</button>
-          <button class="toggle-option" onclick="toggleActivityPattern('monthly')">Monthly</button>
-          
-        </div>
-      </div>
-      <div class="chart-canvas" id=" hourlyHeatmapContainer">
-        <canvas id=" hourlyHeatmapChart"></canvas>
-        <div id=" aourlyHeatmap" class=" hourly-heatmap" style="display: none;"></div>
-      </div>
-    </div>
-  </div>
-
+  
+  
   <!-- Break Activities Popup -->
   <div class="popup" id="breakPopup">
     <div class="popup-content">
